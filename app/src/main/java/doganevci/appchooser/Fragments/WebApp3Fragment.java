@@ -35,8 +35,8 @@ public class WebApp3Fragment extends Fragment {
         @Override
         public void onReceive(Context ctxt, Intent intent) {
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-
             webView.loadUrl("javascript:addNode(\""+String.valueOf(level) + "%"+"\")");
+
         }
     };
 
@@ -49,6 +49,9 @@ public class WebApp3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragmen
+
+
+
 
 
         View rootView = inflater.inflate(R.layout.fragment_web_app3, container, false);
