@@ -32,6 +32,7 @@ dependencies {
 
 
     compile 'com.google.android.gms:play-services-location:11.2.2'
+    compile 'com.karumi:dexter:4.1.0'
 
     testCompile 'junit:junit:4.12'
 }

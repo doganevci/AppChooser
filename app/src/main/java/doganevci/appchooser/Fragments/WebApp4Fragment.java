@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import doganevci.appchooser.JSBridge.JSBridge;
 import doganevci.appchooser.R;
@@ -19,7 +20,7 @@ public class WebApp4Fragment extends Fragment {
     private JSBridge   theBridge;
 
     private String appUrl="http://doganevci.me/webapp4/";
-
+    private ProgressBar myProgressBar;
     public WebApp4Fragment() {
         // Required empty public constructor
     }
@@ -29,6 +30,9 @@ public class WebApp4Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_web_app4, container, false);
+        rootView.setRotationY(180);
+
+        myProgressBar=(ProgressBar) rootView.findViewById(R.id.myProgressBar);
 
         webView = (WebView) rootView.findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -37,7 +41,8 @@ public class WebApp4Fragment extends Fragment {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-
+                myProgressBar.setVisibility(View.GONE);
+                webView.setVisibility(View.VISIBLE);
             }
         });
 

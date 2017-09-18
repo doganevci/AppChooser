@@ -19,6 +19,8 @@ import doganevci.appchooser.Fragments.WebApp3Fragment;
 import doganevci.appchooser.Fragments.WebApp4Fragment;
 import doganevci.appchooser.Utils.myAnimationTrans;
 
+import static android.support.v4.view.ViewPager.SCROLL_STATE_DRAGGING;
+
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
@@ -33,12 +35,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         mViewPager = (ViewPager) findViewById(R.id.container);
 
-        setupViewPager(mViewPager);
+        setupViewPager();
+
+
 
     }
 
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
 
@@ -47,18 +51,55 @@ public class MainActivity extends AppCompatActivity {
         WebApp3Fragment Fragment3=new WebApp3Fragment();
         WebApp4Fragment Fragment4=new WebApp4Fragment();
 
+
         adapter.addFragment(Fragment1);
         adapter.addFragment(Fragment2);
         adapter.addFragment(Fragment3);
         adapter.addFragment(Fragment4);
 
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(5);
         mViewPager.setClipToPadding(false);
+
         mViewPager.setPageMargin(24);
         mViewPager.setPadding(48, 8, 48, 8);
+        mViewPager.setRotationY(180);
 
-        viewPager.setAdapter(adapter);
+        mViewPager.setAdapter(adapter);
         mViewPager.setPageTransformer(true, new myAnimationTrans());
+
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if(state!=SCROLL_STATE_DRAGGING)
+                {
+                    //mViewPager.setPageMargin(0);
+                   // mViewPager.setPadding(0, 0, 0, 0);
+                }
+                else
+                {
+
+
+                }
+
+            }
+        });
+
+
     }
 
 

@@ -1,6 +1,7 @@
 package doganevci.appchooser.Fragments;
 
 
+import android.Manifest;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -29,6 +31,12 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -67,6 +75,7 @@ public class WebApp2Fragment extends Fragment {
 
     private WebView webView;
     private String appUrl="http://doganevci.me/webapp2/";
+    private ProgressBar myProgressBar;
 
     public WebApp2Fragment() {
         // Required empty public constructor
@@ -75,10 +84,12 @@ public class WebApp2Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_web_app2, container, false);
+        rootView.setRotationY(180);
 
+        myProgressBar=(ProgressBar) rootView.findViewById(R.id.myProgressBar);
 
         webView = (WebView) rootView.findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -87,12 +98,34 @@ public class WebApp2Fragment extends Fragment {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-
+                myProgressBar.setVisibility(View.GONE);
+                webView.setVisibility(View.VISIBLE);
             }
         });
         webView.loadUrl(appUrl);
 
 
+        Dexter.withActivity(getActivity())
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(new PermissionListener() {
+                    @Override public void onPermissionGranted(PermissionGrantedResponse response) {
+                        initilizeLocationComponents(savedInstanceState);
+                    }
+                    @Override public void onPermissionDenied(PermissionDeniedResponse response) {
+                        Toast.makeText(getActivity(), "You denied the permission Webapp2 won't work until you agree.", Toast.LENGTH_LONG).show();
+                    }
+                    @Override public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+
+
+                    }
+                }).check();
+
+        return rootView;
+    }
+
+
+    public void initilizeLocationComponents(Bundle savedInstanceState)
+    {
         mRequestingLocationUpdates = false;
         mLastUpdateTime = "";
 
@@ -106,11 +139,7 @@ public class WebApp2Fragment extends Fragment {
         createLocationRequest();
         buildLocationSettingsRequest();
         startLocationUpdates();
-
-        return rootView;
     }
-
-
 
     private void updateValuesFromBundle(Bundle savedInstanceState) {
         if (savedInstanceState != null) {

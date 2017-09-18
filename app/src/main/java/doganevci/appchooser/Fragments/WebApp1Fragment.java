@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+
 import doganevci.appchooser.R;
 
 import static android.content.Context.SENSOR_SERVICE;
@@ -24,6 +26,7 @@ public class WebApp1Fragment extends Fragment implements SensorEventListener {
     private SensorManager sm;
     private Sensor accelerometer;
     private String appUrl="http://doganevci.me/webapp/";
+    private ProgressBar myProgressBar;
 
     public WebApp1Fragment() {
         // Required empty public constructor
@@ -34,12 +37,15 @@ public class WebApp1Fragment extends Fragment implements SensorEventListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_web_app1, container, false);
+        rootView.setRotationY(180);
 
 
         sm=(SensorManager)getActivity().getSystemService(SENSOR_SERVICE);
         accelerometer=sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(this, accelerometer, 1000000);
 
+
+        myProgressBar=(ProgressBar) rootView.findViewById(R.id.myProgressBar);
 
         webView = (WebView) rootView.findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -48,7 +54,8 @@ public class WebApp1Fragment extends Fragment implements SensorEventListener {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-
+                myProgressBar.setVisibility(View.GONE);
+                webView.setVisibility(View.VISIBLE);
             }
         });
         webView.loadUrl(appUrl);

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import doganevci.appchooser.R;
 
@@ -21,6 +22,7 @@ public class WebApp3Fragment extends Fragment {
 
     private WebView  webView;
     private String appUrl="http://doganevci.me/webapp3/";
+    private ProgressBar myProgressBar;
     private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver(){
         @Override
         public void onReceive(Context ctxt, Intent intent) {
@@ -42,8 +44,11 @@ public class WebApp3Fragment extends Fragment {
         // Inflate the layout for this fragmen
 
         View rootView = inflater.inflate(R.layout.fragment_web_app3, container, false);
+        rootView.setRotationY(180);
 
         getActivity().registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+        myProgressBar=(ProgressBar) rootView.findViewById(R.id.myProgressBar);
 
         webView = (WebView) rootView.findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -52,7 +57,8 @@ public class WebApp3Fragment extends Fragment {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-
+                myProgressBar.setVisibility(View.GONE);
+                webView.setVisibility(View.VISIBLE);
             }
         });
         webView.loadUrl(appUrl);

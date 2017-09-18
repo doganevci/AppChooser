@@ -54,7 +54,6 @@ public class myAnimationTrans extends BaseTransformer{
             view.setScaleX(scaleFactor);
             view.setScaleY(scaleFactor);
 
-
         }
 
     }
