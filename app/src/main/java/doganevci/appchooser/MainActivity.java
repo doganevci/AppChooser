@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.setAdapter(adapter);
         mViewPager.setPageTransformer(true, new myAnimationTrans());
-
-
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
 
             @Override
