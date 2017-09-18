@@ -4,12 +4,12 @@
     android:shape="rectangle"   >
 
     <solid
-        android:color="#50E3C2" >
+        android:color="@color/green2" >
     </solid>
 
     <stroke
         android:width="2dp"
-        android:color="#50E3C2" >
+        android:color="@color/green2" >
     </stroke>
 
     <margin

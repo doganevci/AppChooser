@@ -24,7 +24,7 @@ public class JSBridge {
 
 
         Vibrator v = (Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE);
-// Vibrate for 1 seconds
+        // Vibrate for 1 seconds
         v.vibrate(1000);
         Toast.makeText(mContext, "TESTtest", Toast.LENGTH_SHORT).show();
 

@@ -24,11 +24,10 @@
             android:paddingLeft="15dp"
             android:src="@drawable/sample"/>
 
-        <Button
-            android:id="@+id/button"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:paddingLeft="10dp"
             android:layout_x="135dp"
             android:layout_y="4dp"
             android:text="WebApp3" />

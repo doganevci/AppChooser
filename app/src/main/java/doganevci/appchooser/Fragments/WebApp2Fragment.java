@@ -1,16 +1,11 @@
 package doganevci.appchooser.Fragments;
 
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
 import android.content.IntentSender;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +14,6 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -38,8 +32,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.text.DateFormat;
 import java.util.Date;
-
-import doganevci.appchooser.MainActivity;
 import doganevci.appchooser.R;
 
 import static android.content.ContentValues.TAG;
@@ -69,15 +61,11 @@ public class WebApp2Fragment extends Fragment {
 
 
     // Labels.
-    private String mLatitudeLabel;
-    private String mLongitudeLabel;
-    private String mLastUpdateTimeLabel;
-
     private Boolean mRequestingLocationUpdates;
     private String mLastUpdateTime;
 
 
-    WebView webView;
+    private WebView webView;
     private String appUrl="http://doganevci.me/webapp2/";
 
     public WebApp2Fragment() {
@@ -93,16 +81,6 @@ public class WebApp2Fragment extends Fragment {
 
 
         webView = (WebView) rootView.findViewById(R.id.webview);
-        Button btn= (Button) rootView.findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String msgToSend = "selammmm";
-                webView.loadUrl("javascript:addNode(\""+msgToSend+"\")");
-            }
-        });
-
-
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.setWebChromeClient(new WebChromeClient() );
@@ -115,8 +93,6 @@ public class WebApp2Fragment extends Fragment {
         webView.loadUrl(appUrl);
 
 
-
-
         mRequestingLocationUpdates = false;
         mLastUpdateTime = "";
 
@@ -126,12 +102,9 @@ public class WebApp2Fragment extends Fragment {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
         mSettingsClient = LocationServices.getSettingsClient(getActivity());
 
-
         createLocationCallback();
         createLocationRequest();
         buildLocationSettingsRequest();
-
-
         startLocationUpdates();
 
         return rootView;
@@ -172,14 +145,14 @@ public class WebApp2Fragment extends Fragment {
     }
 
     private void createLocationCallback() {
+
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
                 mCurrentLocation = locationResult.getLastLocation();
                 mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
-
-                webView.loadUrl("javascript:addNode(\""+String.valueOf(mCurrentLocation.getLongitude()) + "%"+"\")");
+                webView.loadUrl("javascript:addNode(\"lng:"+String.valueOf(mCurrentLocation.getLongitude()) + "ltd:"+String.valueOf(mCurrentLocation.getLatitude()) +"%"+"\")");
 
             }
         };
@@ -235,7 +208,5 @@ public class WebApp2Fragment extends Fragment {
                     }
                 });
     }
-
-
 
 }

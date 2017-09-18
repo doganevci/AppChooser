@@ -1,13 +1,11 @@
 package doganevci.appchooser.Fragments;
 
 
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,23 +13,16 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-
-import doganevci.appchooser.JSBridge.JSBridge;
 import doganevci.appchooser.R;
 
 import static android.content.Context.SENSOR_SERVICE;
-import static android.hardware.SensorManager.SENSOR_DELAY_UI;
-
 
 public class WebApp1Fragment extends Fragment implements SensorEventListener {
 
 
-    WebView  webView;
-
+    private WebView  webView;
     private SensorManager sm;
     private Sensor accelerometer;
-
     private String appUrl="http://doganevci.me/webapp/";
 
     public WebApp1Fragment() {
@@ -50,23 +41,9 @@ public class WebApp1Fragment extends Fragment implements SensorEventListener {
         sm.registerListener(this, accelerometer, 1000000);
 
 
-
         webView = (WebView) rootView.findViewById(R.id.webview);
-        Button btn= (Button) rootView.findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String msgToSend = "selammmm";
-                webView.loadUrl("javascript:addNode(\""+msgToSend+"\")");
-            }
-        });
-
-
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
-
-
-
         webView.setWebChromeClient(new WebChromeClient() );
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -74,8 +51,6 @@ public class WebApp1Fragment extends Fragment implements SensorEventListener {
 
             }
         });
-
-
         webView.loadUrl(appUrl);
 
 

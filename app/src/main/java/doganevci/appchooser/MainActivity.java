@@ -1,6 +1,6 @@
 package doganevci.appchooser;
 
-import android.graphics.Color;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -9,16 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,18 +17,11 @@ import doganevci.appchooser.Fragments.WebApp1Fragment;
 import doganevci.appchooser.Fragments.WebApp2Fragment;
 import doganevci.appchooser.Fragments.WebApp3Fragment;
 import doganevci.appchooser.Fragments.WebApp4Fragment;
-import doganevci.appchooser.JSBridge.JSBridge;
 import doganevci.appchooser.Utils.myAnimationTrans;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private ViewPager mViewPager;
-
-    WebApp1Fragment Fragment1;
-    WebApp2Fragment Fragment2;
-    WebApp3Fragment Fragment3;
-    WebApp4Fragment Fragment4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +41,11 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        Fragment1=new WebApp1Fragment();
-        Fragment2=new WebApp2Fragment();
-        Fragment3=new WebApp3Fragment();
-        Fragment4=new WebApp4Fragment();
+
+        WebApp1Fragment Fragment1=new WebApp1Fragment();
+        WebApp2Fragment Fragment2=new WebApp2Fragment();
+        WebApp3Fragment Fragment3=new WebApp3Fragment();
+        WebApp4Fragment Fragment4=new WebApp4Fragment();
 
         adapter.addFragment(Fragment1);
         adapter.addFragment(Fragment2);

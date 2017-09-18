@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- default project colors -->
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- my colors -->
+    <color name="green">#B8E986</color>
+    <color name="blue">#4A90E2</color>
+    <color name="green2">#50E3C2</color>
+    <color name="purple">#9586e9</color>
+
 </resources>
