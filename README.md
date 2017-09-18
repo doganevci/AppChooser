@@ -1,5 +1,7 @@
 # AppChooser
 
+::The native app sends location, battary, accelerometer data when native receiver gets !
+
 Libraries
 - Google Play Services: Location
 - Dexter: for runtime permissions.
