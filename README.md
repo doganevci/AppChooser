@@ -1,6 +1,6 @@
 # AppChooser
 
-::The native app sends location, battary, accelerometer data when native receiver gets !
+::The native app sends location, battery, accelerometer data when native receiver gets !
 
 Libraries
 - Google Play Services: Location
