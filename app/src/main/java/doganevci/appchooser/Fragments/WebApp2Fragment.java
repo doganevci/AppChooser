@@ -45,7 +45,7 @@ import doganevci.appchooser.R;
 import static android.content.ContentValues.TAG;
 
 
-public class WebApp2Fragment extends Fragment {
+public class WebApp2Fragment extends WebAppSuperFragment {
 
 
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -73,37 +73,15 @@ public class WebApp2Fragment extends Fragment {
     private String mLastUpdateTime;
 
 
-    private WebView webView;
-    private String appUrl="http://doganevci.me/webapp2/";
-    private ProgressBar myProgressBar;
-
     public WebApp2Fragment() {
-        // Required empty public constructor
+        setLayout(R.layout.fragment_web_app2);
+        setWebAppUrl("http://doganevci.me/webapp2/");
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_web_app2, container, false);
-        rootView.setRotationY(180);
-
-        myProgressBar=(ProgressBar) rootView.findViewById(R.id.myProgressBar);
-
-        webView = (WebView) rootView.findViewById(R.id.webview);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.setWebChromeClient(new WebChromeClient() );
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                myProgressBar.setVisibility(View.GONE);
-                webView.setVisibility(View.VISIBLE);
-            }
-        });
-        webView.loadUrl(appUrl);
-
 
         Dexter.withActivity(getActivity())
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -120,7 +98,7 @@ public class WebApp2Fragment extends Fragment {
                     }
                 }).check();
 
-        return rootView;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
 
@@ -181,8 +159,9 @@ public class WebApp2Fragment extends Fragment {
                 super.onLocationResult(locationResult);
                 mCurrentLocation = locationResult.getLastLocation();
                 mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
-                webView.loadUrl("javascript:addNode(\"lng:"+String.valueOf(mCurrentLocation.getLongitude()) + "ltd:"+String.valueOf(mCurrentLocation.getLatitude()) +"%"+"\")");
 
+
+                addNodeToWebViewWithJS("lng:"+String.valueOf(mCurrentLocation.getLongitude()) + "ltd:"+String.valueOf(mCurrentLocation.getLatitude()) +"%");
             }
         };
     }
