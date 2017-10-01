@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import doganevci.appchooser.Fragments.BaseWebApp.WebAppSuperFragment;
 import doganevci.appchooser.R;
 
 public class WebApp3Fragment extends WebAppSuperFragment {
@@ -24,16 +25,21 @@ public class WebApp3Fragment extends WebAppSuperFragment {
         }
     };
 
-    public WebApp3Fragment() {
-        setLayout(R.layout.fragment_web_app3);
-        setWebAppUrl("http://doganevci.me/webapp3/");
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public String getUrl() {
+        return "http://doganevci.me/webapp3/";
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.fragment_web_app3;
     }
 
 }

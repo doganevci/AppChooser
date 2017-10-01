@@ -1,5 +1,9 @@
 # AppChooser
 
+
+#NEWS!!
+- You can easily create new webapp with extending WebappSuperFragment (which is abstract class implementing WebAppInterface.)
+
 ::The native app sends location, battery, accelerometer data when native receiver gets !
 
 Libraries

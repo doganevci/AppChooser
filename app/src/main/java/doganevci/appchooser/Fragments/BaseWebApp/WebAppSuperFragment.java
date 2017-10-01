@@ -1,4 +1,4 @@
-package doganevci.appchooser.Fragments;
+package doganevci.appchooser.Fragments.BaseWebApp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,9 +17,9 @@ import doganevci.appchooser.R;
 // Extend from this class to add to your fragment
 // a webview with jsbridge
 //
-//Use  setWebAppUrl and setLayout methods in your contructor.
+//overwrite  getUrl and getLayout methods
 
-public class WebAppSuperFragment extends Fragment {
+public abstract class WebAppSuperFragment extends Fragment implements WebAppInterface{
 
 
     private WebView  webView; // webview for a webapp
@@ -40,24 +40,12 @@ public class WebAppSuperFragment extends Fragment {
         return initilizeWebApp(inflater,container);
     }
 
-    //Sets the webapps url
-    public void setWebAppUrl(String url)
-    {
-        appUrl=url;
-    }
-
-    // sets the layout covers the webapp
-    public void setLayout(int layout)
-    {
-        webAppNativeLayout =layout;
-    }
-
-
     // This method initilize the webview for Javascript bridge and loading interface
     // automaticly calling
     private View initilizeWebApp(LayoutInflater inflater,ViewGroup container)
     {
-
+        appUrl= getUrl();
+        webAppNativeLayout= getLayout();
 
         View rootView = inflater.inflate(webAppNativeLayout, container, false);
         rootView.setRotationY(180);

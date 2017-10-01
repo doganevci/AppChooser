@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import doganevci.appchooser.Fragments.BaseWebApp.WebAppSuperFragment;
 import doganevci.appchooser.R;
 
 import static android.content.Context.SENSOR_SERVICE;
@@ -20,13 +21,6 @@ public class WebApp1Fragment extends WebAppSuperFragment implements SensorEventL
     private SensorManager sensorManager;
     private Sensor accelerometer;
 
-    // in constractor of the WebApp Fragments, which extends from WebAppSuperFragment,
-    // you must set your webappurl and layout.
-    //
-    public WebApp1Fragment() {
-        setLayout(R.layout.fragment_web_app1);
-        setWebAppUrl("http://doganevci.me/webapp/");
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,5 +40,16 @@ public class WebApp1Fragment extends WebAppSuperFragment implements SensorEventL
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+
+    @Override
+    public String getUrl() {
+        return "http://doganevci.me/webapp/";
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.fragment_web_app1;
     }
 }

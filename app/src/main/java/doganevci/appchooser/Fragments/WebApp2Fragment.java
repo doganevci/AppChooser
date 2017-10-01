@@ -7,15 +7,10 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -40,6 +35,8 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.text.DateFormat;
 import java.util.Date;
+
+import doganevci.appchooser.Fragments.BaseWebApp.WebAppSuperFragment;
 import doganevci.appchooser.R;
 
 import static android.content.ContentValues.TAG;
@@ -69,12 +66,6 @@ public class WebApp2Fragment extends WebAppSuperFragment {
     // Labels.
     private Boolean mRequestingLocationUpdates;
     private String mLastUpdateTime;
-
-
-    public WebApp2Fragment() {
-        setLayout(R.layout.fragment_web_app2);
-        setWebAppUrl("http://doganevci.me/webapp2/");
-    }
 
 
     @Override
@@ -213,6 +204,17 @@ public class WebApp2Fragment extends WebAppSuperFragment {
 
                     }
                 });
+    }
+
+
+    @Override
+    public String getUrl() {
+        return "http://doganevci.me/webapp2/";
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.fragment_web_app2;
     }
 
 }
