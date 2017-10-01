@@ -10,7 +10,7 @@ import com.eftimoff.viewpagertransformers.DepthPageTransformer;
  * Created by doganevci on 15/09/2017.
  */
 
-public class myAnimationTrans extends BaseTransformer{
+public class MyAnimationTrans extends BaseTransformer{
     private static final float MIN_SCALE = 0.75F;
 
     @Override

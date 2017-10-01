@@ -17,7 +17,7 @@ import doganevci.appchooser.Fragments.WebApp1Fragment;
 import doganevci.appchooser.Fragments.WebApp2Fragment;
 import doganevci.appchooser.Fragments.WebApp3Fragment;
 import doganevci.appchooser.Fragments.WebApp4Fragment;
-import doganevci.appchooser.Utils.myAnimationTrans;
+import doganevci.appchooser.Utils.MyAnimationTrans;
 
 import static android.support.v4.view.ViewPager.SCROLL_STATE_DRAGGING;
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setRotationY(180);
 
         mViewPager.setAdapter(adapter);
-        mViewPager.setPageTransformer(true, new myAnimationTrans());
+        mViewPager.setPageTransformer(true, new MyAnimationTrans());
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
 
             @Override
