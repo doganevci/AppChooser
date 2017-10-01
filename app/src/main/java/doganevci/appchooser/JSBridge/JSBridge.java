@@ -19,6 +19,8 @@ public class JSBridge {
         mContext = c;
         _webView=webView;
     }
+
+     // if loaded webapp calls this method in javascript block, this code will be call.
     @JavascriptInterface
     public void vibrateAndShowToast() {
 

@@ -1,6 +1,5 @@
 package doganevci.appchooser;
 
-
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -36,12 +35,11 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
 
         setupViewPager();
-
-
-
     }
 
 
+    // Created 4 fragment for 4 webapps
+    // initilize viewpager
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -99,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
     public class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

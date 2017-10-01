@@ -44,9 +44,7 @@ import doganevci.appchooser.R;
 
 import static android.content.ContentValues.TAG;
 
-
 public class WebApp2Fragment extends WebAppSuperFragment {
-
 
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     private static final int REQUEST_CHECK_SETTINGS = 0x1;

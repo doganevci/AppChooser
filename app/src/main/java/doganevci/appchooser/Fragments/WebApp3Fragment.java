@@ -14,7 +14,7 @@ import doganevci.appchooser.R;
 
 public class WebApp3Fragment extends WebAppSuperFragment {
 
-
+    // listens the battery receiver
     private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver(){
         @Override
         public void onReceive(Context ctxt, Intent intent) {

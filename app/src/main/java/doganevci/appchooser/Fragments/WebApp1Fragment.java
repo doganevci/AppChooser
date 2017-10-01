@@ -17,9 +17,12 @@ import static android.content.Context.SENSOR_SERVICE;
 public class WebApp1Fragment extends WebAppSuperFragment implements SensorEventListener {
 
 
-    private SensorManager sm;
+    private SensorManager sensorManager;
     private Sensor accelerometer;
 
+    // in constractor of the WebApp Fragments, which extends from WebAppSuperFragment,
+    // you must set your webappurl and layout.
+    //
     public WebApp1Fragment() {
         setLayout(R.layout.fragment_web_app1);
         setWebAppUrl("http://doganevci.me/webapp/");
@@ -28,9 +31,9 @@ public class WebApp1Fragment extends WebAppSuperFragment implements SensorEventL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        sm=(SensorManager)getActivity().getSystemService(SENSOR_SERVICE);
-        accelerometer=sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sm.registerListener(this, accelerometer, 1000000);
+        sensorManager =(SensorManager)getActivity().getSystemService(SENSOR_SERVICE);
+        accelerometer= sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this, accelerometer, 1000000);
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }
