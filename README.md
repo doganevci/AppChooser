@@ -1,10 +1,12 @@
 # AppChooser
-
+Properties
+- Native App <-> WebApp Communication with bridge between Java and Javascript
+- The native app sends location, battery, accelerometer data when native receiver gets.
+- UI design
 
 #NEWS!!
-- You can easily create new webapp with extending WebappSuperFragment (which is abstract class implementing WebAppInterface.)
+You can easily create new webapp with extending WebappSuperFragment (which is abstract class implementing WebAppInterface.)
 
-::The native app sends location, battery, accelerometer data when native receiver gets !
 
 Libraries
 - Google Play Services: Location
@@ -22,13 +24,3 @@ Other libraries comes with default android project (Like design lib, app combatâ
 
 ViewPager is defaultly set left to right. So i rotate view 180 degree. But if i rotate the view, fragments looks like looking from mirror. So also rotate the fragments 180 degree.
 
-
-WebAppUrls
-
-https://github.com/doganevci/doganevci.github.io/blob/master/webapp/index.html
-
-https://github.com/doganevci/doganevci.github.io/blob/master/webapp2/index.html
-
-https://github.com/doganevci/doganevci.github.io/blob/master/webapp3/index.html
-
-https://github.com/doganevci/doganevci.github.io/blob/master/webapp4/index.html
